@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --rosa-choque: #ff54afbe;
+    --rosa-claro: #ffb6d9;
+    --rosa-pastel: #fff0f7;
+    --branco: #ffff;
+    --cinza-escuro: #2d2d2d;
+    --cinza-claro: #f5f5f5;
+
+    --sombra-suave: 0 4px 6px rgba(255, 20, 147, 0.1);
+    --sombra-media: 0 10px 25px rgba(255, 20, 147, 0.2);
+
+    --espacamento-pequeno: 8px;
+    --espacamento-medio: 16px;
+    --espacamento-grande: 32px;
+
+    --borda-arredondada: 12px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background: linear-gradient(135deg, var(--rosa-pastel) 0%, var(--branco) 100%);
+    color: var(--cinza-escuro);
+    min-height: 100vh;
+    display: flex;
+    /*Isso faz centralizar tudo*/
+    flex-direction: column;
+    /*para ficar em coluna*/
+}
+
+header {
+    text-align: center;
+    padding: var(--espacamento-grande) var(--espacamento-medio);
+    background: var(--branco);
+    box-shadow: var(--sombra-suave);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    /*2.5 vezes 1 rem = 16px se não me engano */
+    color: var(--rosa-choque);
+    margin-bottom: var(--espacamento-pequeno);
+    background: linear-gradient(45deg, var(--rosa-choque), var(--rosa-claro));
+    /*Gradiente. Do rosa choque mais forte para o mais fraco */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: var(--cinza-escuro);
+    opacity: 0.4;
+    /*opacidade de 0.4, sendo o 1 o normal, que não é nem um pouco transparente. Ficou bem mais light o 0.4*/
+}
+
+
+main {
+    flex: 1;
+    /*ocupa todo o espaço disponível*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--espacamento-grande) var(--espacamento-medio);
+    gap: var(--espacamento-grande);
+}
+
+section {
+    background: var(--branco);
+    padding: var(--espacamento-grande);
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-media);
+    width: 100%;
+    max-width: 500px;
+}
+
+section h2 {
+    color: var(--rosa-choque);
+    font-size: 1.8rem;
+    margin-bottom: var(--espacamento-medio);
+    text-align: center;
+}
+
+section p {
+    text-align: center;
+    margin-bottom: var(--espacamento-grande);
+    color: var(--cinza-escuro);
+    opacity: 0.4;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacamento-medio);
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacamento-pequeno);
+}
+
+label {
+    font-weight: 600;
+    /* esse é o peso da fonte, se é mais leve, se é mais forte, etc... */
+    color: var(--cinza-escuro);
+}
+
+input {
+    padding: 12px 16px;
+    border: 2px solid var(--rosa-claro);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.5s ease;
+    /*animação quando passa pelo input */
+    background: var(--cinza-claro);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--rosa-choque);
+    background: var(--branco);
+    box-shadow: 0 0 0 3px rgba(255, 20, 147, 0.1);
+}
+
+input::placeholder {
+    color: #999;
+    opacity: 1.5;
+}
+
+input[type='file']{
+    padding: 10px;
+    border: 2px dashed var(--rosa-claro);
+    border-radius: 8px;
+    background: var(--cinza-claro);
+    cursor: pointer;
+    transition: all 0.3s ease
+}
+
+input[type='file']:hover{
+    border-color: var(--rosa-choque);
+    background: var(--rosa-pastel);
+}
+
+button {
+    background: linear-gradient(135deg, var(--rosa-choque) 0%, var(--rosa-claro) 100%);
+    color: var(--branco);
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3 ease;
+    box-shadow: var(--sombra-media);
+    margin-top: var(--espacamento-pequeno);
+}
+
+button:hover {
+    transform: translateY(-2px);
+        /* Sobe com o botão 2px para cima */
+        box-shadow: 0 12px 30px rgba(255, 20, 147, 0.3);
+}
+
+section h3{
+    color: var(--rosa-choque);
+    font-size: 2rem;
+    margin-bottom: var(--espacamento-medio);
+}
+
+ul{
+    list-style: none;
+    margin-left:20px;
+    line-height:1.2rem;
+}
+
+li{
+    margin-bottom: var(--espacamento-pequeno);
+    color: var(--cinza-escuro);
+    padding-left: 30px; /* Adiciona padding a esquerda do texto, empurrando tudo 30px para a direita.*/
+    position:relative; /* relativo a sua posição original */
+}
+
+li::before{
+    content: "💕";
+    position: absolute;
+    left: 0;
+    font-size: 1rem;
+}
+
+footer{
+    background: var(--rosa-claro);
+    padding: var(--espacamento-medio);
+    text-align:center;
+    box-shadow: 0 -4px 6px rgba(255, 20, 147, 0.05);
+}
+
+footer p{
+    color: var(--cinza-escuro);
+    opacity: 0.4;
+    font-size: 0.8rem;    
+}
+
+@media (max-width: 768px){
+    header h1{
+        font-size: 2rem;
+    }
+    section{
+        padding: var(--espacamento-medio);
+    }
+
+    button{
+        padding: 14px 24px;
+        font-size: 1rem;
+    }
+}
+
