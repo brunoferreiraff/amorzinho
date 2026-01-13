@@ -212,6 +212,12 @@ footer p{
     font-size: 0.8rem;    
 }
 
+.casal-nomes{
+    font-size: 2rem;
+    color: var(--rosa-choque);
+    font-weight: bolder;
+}
+
 @media (max-width: 768px){
     header h1{
         font-size: 2rem;
@@ -225,4 +231,5 @@ footer p{
         font-size: 1rem;
     }
 }
+
 

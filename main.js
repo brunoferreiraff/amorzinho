@@ -5,144 +5,60 @@ form.addEventListener('submit', function (e) {
     e.preventDefault(); //nao enviar o formulário e dar refresh na página.
 
 
-    let person1 = document.getElementById('person1').value;
-    let person2 = document.getElementById('person2').value;
+    const person1 = document.getElementById('person1').value;
+    const person2 = document.getElementById('person2').value;
     const startDate = document.getElementById('startDate').value;
     //     // precisa colocar value senão ele não pega o que foi colocado no form.
     console.log(`O ${person1} comecou a namorar a ${person2} no dia ${startDate}`);
 
     // Criar objeto com os dados
-      const dados = {
+    const dados = {
         pessoa1: person1,
         pessoa2: person2,
         data: startDate
-      };
-      
-      // Salvar no localStorage
-      localStorage.setItem('casal', JSON.stringify(dados));
-      
-      console.log('✅ Dados salvos!', dados);
-      
-      // TROCAR O CONTEÚDO DA SEÇÃO
-      mostrarResultado(dados);
-    });
-    
-    // Função para mostrar o resultado (substituindo "Como funciona")
-    function mostrarResultado(dados) {
-      // ESCONDER a parte "Como funciona"
-      document.getElementById('comoFunciona').classList.add('hidden');
-      
-      // MOSTRAR a parte de resultado
-      document.getElementById('resultado').classList.remove('hidden');
-      
-      // Preencher nome do casal com emoji
-      document.getElementById('casalNomes').textContent = 
-        `💑 ${dados.pessoa1} & ${dados.pessoa2}`;
-      
-      // Calcular e mostrar tempo juntos
-      atualizarTempo(dados.data);
-      
-      // Atualizar a cada segundo
-      setInterval(() => atualizarTempo(dados.data), 1000);
-      
-      // Rolar até a seção
-      document.getElementById('infoSection').scrollIntoView({ 
-        behavior: 'smooth' 
-      });
-    }
-    
-    // Função para calcular tempo juntos e próximo aniversário
-    function atualizarTempo(dataInicio) {
-      const inicio = new Date(dataInicio + 'T00:00:00');
-      const agora = new Date();
-      
-      // ========================================
-      // 1. CALCULAR TEMPO JUNTOS
-      // ========================================
-      const diff = agora - inicio;
-      const totalDias = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const anos = Math.floor(totalDias / 365);
-      const meses = Math.floor((totalDias % 365) / 30);
-      const dias = Math.floor((totalDias % 365) % 30);
-      
-      // Montar texto do tempo juntos
-      let textoTempo = '';
-      
-      if (anos > 0) {
-        textoTempo += `${anos} ${anos === 1 ? 'ano' : 'anos'}`;
-      }
-      
-      if (meses > 0) {
-        if (textoTempo) textoTempo += ', ';
-        textoTempo += `${meses} ${meses === 1 ? 'mês' : 'meses'}`;
-      }
-      
-      if (dias > 0 || textoTempo === '') {
-        if (textoTempo) textoTempo += ' e ';
-        textoTempo += `${dias} ${dias === 1 ? 'dia' : 'dias'}`;
-      }
-      
-      document.getElementById('tempoJuntos').textContent = textoTempo;
-      
-      // ========================================
-      // 2. CALCULAR PRÓXIMO ANIVERSÁRIO
-      // ========================================
-      
-      // Pegar o mês e dia da data de início
-      const mesInicio = inicio.getMonth(); // 0-11
-      const diaInicio = inicio.getDate();  // 1-31
-      
-      // Criar data do aniversário neste ano
-      const anoAtual = agora.getFullYear();
-      let proximoAniversario = new Date(anoAtual, mesInicio, diaInicio);
-      
-      // Se o aniversário já passou este ano, pegar o do próximo ano
-      if (proximoAniversario < agora) {
-        proximoAniversario = new Date(anoAtual + 1, mesInicio, diaInicio);
-      }
-      
-      // Formatar data do próximo aniversário
-      const dataAniversario = proximoAniversario.toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric'
-      });
-      
-      document.getElementById('proximoAniversario').textContent = dataAniversario;
-      
-      // ========================================
-      // 3. CALCULAR DIAS RESTANTES
-      // ========================================
-      const diffAniversario = proximoAniversario - agora;
-      const diasRestantes = Math.ceil(diffAniversario / (1000 * 60 * 60 * 24));
-      
-      let textoDias = '';
-      if (diasRestantes === 0) {
-        textoDias = '🎉 É HOJE! Feliz aniversário de namoro!';
-      } else if (diasRestantes === 1) {
-        textoDias = '1 dia (É amanhã! 🎊)';
-      } else {
-        textoDias = `${diasRestantes} dias`;
-      }
-      
-      document.getElementById('diasRestantes').textContent = textoDias;
-    }
-    
-    // Quando a página carregar, verificar se já tem dados salvos
-    window.addEventListener('load', function() {
-      const dadosSalvos = localStorage.getItem('casal');
-      
-      if (dadosSalvos) {
-        const dados = JSON.parse(dadosSalvos);
-        
-        // Preencher formulário
-        document.getElementById('person1').value = dados.pessoa1;
-        document.getElementById('person2').value = dados.pessoa2;
-        document.getElementById('startDate').value = dados.data;
-        
-        // Mostrar resultado
-        mostrarResultado(dados);
-      }
-    });
+    };
+    localStorage.setItem('casal', JSON.stringify(dados)); //Isso serve para salvar os dados no localStorage
+    console.log('Dados foram salvos', dados);
 
+    mostrarResultado(dados); //função para mostrar os dados e substituir os lugares que eu sinalizei
+});
 
+function mostrarResultado(dados) {
+    document.getElementById('comoFunciona').classList.add('hidden'); // Isso aqui torna o 'comofunciona' em hidden, ou seja, o esconde
+    document.getElementById('resultado').classList.remove('hidden'); // Isso aqui torna o 'resultado' em hidden, ou seja, o mostra
+    document.getElementById('casalNomes').textContent = `💑 ${dados.pessoa1} ${dados.pessoa2} 💕`; //coloca no ID 'casalnomes' os dados puxados
+
+    atualizarTempo(dados.data);
+    setInterval(() => atualizarTempo(dados.data), 1000);
+    document.getElementById('infosection').scrollIntoView({
+        behavior: 'smooth'
+    }); //função para rolar até a parte que tem o card do casal.
+}
+
+function atualizarTempo(dataInicio) {
+    const inicio = new Date(dataInicio + 'T00:00:00');
+    const agora = new Date();
+
+    const difer = agora - inicio;
+    const totalDias = Math.floor(difer / (1000 * 60 * 60 * 24)); //transforma a diferença da data agora e inicio em dias
+    const anos = Math.floor(totalDias / 365); //divide os dias por dias do ano
+    const meses = Math.floor(totalDias % 365); // descobre os meses
+   const dias = Math.floor(difer / (totalDias % 365) % 30); //descobre quantos dias
+
+    let textTempo = '';
+
+    if (anos > 0) {
+        textTempo += `${anos} ${anos === 1 ? 'ano' : 'anos'}`;
+    }
+    if (meses > 0) {
+        textTempo += `${meses} ${meses === 1 ? 'mês' : 'meses'}`
+    }
+
+    if (dias > 0 || textTempo === '') {
+        if (textTempo) textTempo += ' e ';
+        textTempo += `${dias} ${dias === 1 ? 'dia' : 'dias'}`;
+    }
+
+    document.getElementById('tempoJuntos').textContent = textTempo;
+
+} 

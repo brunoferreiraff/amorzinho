@@ -34,22 +34,32 @@
                     <label for="startDate">Quando começaram a namorar?</label>
                     <input type="date" id="startDate" name="startDate" required>
                 </div>
-                <div>
-                    <label for="fotoCasal">Foto do Casal:</label>
-                    <input type="file" id="fotoCasal" accept="image/*">
-                </div>
-                <button type="submit">Crie a página do seu amor ❤️ </button>
+
+                <button type="submit">Crie um card para o seu amor ❤️ </button>
             </form>
         </section>
 
-        <section>
-            <h3 id="comoFunciona">Como Funciona?</h3>
-            <ul id="resultado">
-                <li>Preencha o nome do casal</li>
-                <li>Escolha a data do começo do relacionamento</li>
-                <li>Clique em "Criar sua Página"</li>
-                <li>Pronto! Agora vocês tem uma página na internet para chamar de sua</li>
-            </ul>
+        <section id="info">
+            <div id="comoFunciona"><!-- Cria uma divi para poder mostrar outro conteúdo depois do submit-->
+                <h3>Como Funciona?</h3>
+                <ul>
+                    <li>Preencha o nome do casal</li>
+                    <li>Escolha a data do começo do relacionamento</li>
+                    <li>Clique em "Criar sua Página"</li>
+                    <li>Pronto! Agora vocês tem uma página na internet para chamar de sua</li>
+                </ul>
+            </div>
+            <div id="resultado" class="hidden">
+                <div class="casal-nomes" id="casalNomes">
+                </div>
+
+                <div class="infoBox">
+                    <span class="info-label">⏰ Tempo que vocês estão juntos: </span>
+                    <div class="info-valor" id="tempoJuntos">
+                    </div>
+                </div>
+            </div>
+
         </section>
     </main>
 
@@ -58,7 +68,7 @@
     </footer>
 
     <script src="main.js">
-        
+
     </script>
 </body>
 
